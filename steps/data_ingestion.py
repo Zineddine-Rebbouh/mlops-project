@@ -52,3 +52,9 @@ class DataIngestorFactory:
             return CSVFileIngestion()
         else:
             raise ValueError(f"Unsupported file type for {file_path}. Only .zip and .csv files are supported.")
+
+
+if __name__ == "__main__":
+    file_path = "C:\\Users\\mkrym\\Downloads\\archive.zip"
+    data_ingestion = DataIngestorFactory.get_data_ingestor(file_path)
+    df = data_ingestion.ingest(file_path)

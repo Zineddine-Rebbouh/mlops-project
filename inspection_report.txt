@@ -1,0 +1,131 @@
+Data Inspection Report - 2025-08-23 02:53:03
+================================================================================
+
+DataType:
+--------------------------------------------------
+Data Types:
+  price: int64
+  area: int64
+  bedrooms: int64
+  bathrooms: int64
+  stories: int64
+  mainroad: object
+  guestroom: object
+  basement: object
+  hotwaterheating: object
+  airconditioning: object
+  parking: int64
+  prefarea: object
+  furnishingstatus: object
+Type Summary:
+  object: 7
+  int64: 6
+
+SummaryStatistics:
+--------------------------------------------------
+Numerical Summary:
+  count: {'price': 545.0, 'area': 545.0, 'bedrooms': 545.0, 'bathrooms': 545.0, 'stories': 545.0, 'parking': 545.0}
+  mean: {'price': 4766729.247706422, 'area': 5150.54128440367, 'bedrooms': 2.9651376146788992, 'bathrooms': 1.2862385321100918, 'stories': 1.8055045871559634, 'parking': 0.6935779816513762}
+  std: {'price': 1870439.6156573922, 'area': 2170.141022508803, 'bedrooms': 0.7380638605685743, 'bathrooms': 0.5024696160532146, 'stories': 0.8674924629255264, 'parking': 0.8615857504605412}
+  min: {'price': 1750000.0, 'area': 1650.0, 'bedrooms': 1.0, 'bathrooms': 1.0, 'stories': 1.0, 'parking': 0.0}
+  25%: {'price': 3430000.0, 'area': 3600.0, 'bedrooms': 2.0, 'bathrooms': 1.0, 'stories': 1.0, 'parking': 0.0}
+  50%: {'price': 4340000.0, 'area': 4600.0, 'bedrooms': 3.0, 'bathrooms': 1.0, 'stories': 2.0, 'parking': 0.0}
+  75%: {'price': 5740000.0, 'area': 6360.0, 'bedrooms': 3.0, 'bathrooms': 2.0, 'stories': 2.0, 'parking': 1.0}
+  max: {'price': 13300000.0, 'area': 16200.0, 'bedrooms': 6.0, 'bathrooms': 4.0, 'stories': 4.0, 'parking': 3.0}
+Categorical Summary:
+  count: {'mainroad': 545, 'guestroom': 545, 'basement': 545, 'hotwaterheating': 545, 'airconditioning': 545, 'prefarea': 545, 'furnishingstatus': 545}
+  unique: {'mainroad': 2, 'guestroom': 2, 'basement': 2, 'hotwaterheating': 2, 'airconditioning': 2, 'prefarea': 2, 'furnishingstatus': 3}
+  top: {'mainroad': 'yes', 'guestroom': 'no', 'basement': 'no', 'hotwaterheating': 'no', 'airconditioning': 'no', 'prefarea': 'no', 'furnishingstatus': 'semi-furnished'}
+  freq: {'mainroad': 468, 'guestroom': 448, 'basement': 354, 'hotwaterheating': 520, 'airconditioning': 373, 'prefarea': 417, 'furnishingstatus': 227}
+
+MissingValues:
+--------------------------------------------------
+Missing Counts:
+  price: 0
+  area: 0
+  bedrooms: 0
+  bathrooms: 0
+  stories: 0
+  mainroad: 0
+  guestroom: 0
+  basement: 0
+  hotwaterheating: 0
+  airconditioning: 0
+  parking: 0
+  prefarea: 0
+  furnishingstatus: 0
+Missing Percentage:
+  price: 0.00%
+  area: 0.00%
+  bedrooms: 0.00%
+  bathrooms: 0.00%
+  stories: 0.00%
+  mainroad: 0.00%
+  guestroom: 0.00%
+  basement: 0.00%
+  hotwaterheating: 0.00%
+  airconditioning: 0.00%
+  parking: 0.00%
+  prefarea: 0.00%
+  furnishingstatus: 0.00%
+
+OutlierDetection:
+--------------------------------------------------
+Outliers:
+  price: {'outlier_count': 15, 'outlier_values': [13300000, 12250000, 12250000, 12215000, 11410000, 10850000, 10150000, 10150000, 9870000, 9800000, 9800000, 9681000, 9310000, 9240000, 9240000], 'lower_bound': np.float64(-35000.0), 'upper_bound': np.float64(9205000.0)}
+  area: {'outlier_count': 12, 'outlier_values': [16200, 13200, 11440, 11175, 13200, 12090, 15600, 11460, 11410, 10700, 12900, 12944], 'lower_bound': np.float64(-540.0), 'upper_bound': np.float64(10500.0)}
+  bedrooms: {'outlier_count': 12, 'outlier_values': [5, 5, 5, 5, 6, 5, 5, 5, 5, 5, 6, 5], 'lower_bound': np.float64(0.5), 'upper_bound': np.float64(4.5)}
+  bathrooms: {'outlier_count': 1, 'outlier_values': [4], 'lower_bound': np.float64(-0.5), 'upper_bound': np.float64(3.5)}
+  stories: {'outlier_count': 41, 'outlier_values': [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4], 'lower_bound': np.float64(-0.5), 'upper_bound': np.float64(3.5)}
+  parking: {'outlier_count': 12, 'outlier_values': [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], 'lower_bound': np.float64(-1.5), 'upper_bound': np.float64(2.5)}
+
+DuplicateDetection:
+--------------------------------------------------
+Duplicate Count:
+  0
+Duplicate Rows:
+  price: {}
+  area: {}
+  bedrooms: {}
+  bathrooms: {}
+  stories: {}
+  mainroad: {}
+  guestroom: {}
+  basement: {}
+  hotwaterheating: {}
+  airconditioning: {}
+  parking: {}
+  prefarea: {}
+  furnishingstatus: {}
+
+CorrelationAnalysis:
+--------------------------------------------------
+Correlations:
+  price: {'price': 1.0, 'area': 0.5359973457780797, 'bedrooms': 0.36649402577386964, 'bathrooms': 0.517545339455012, 'stories': 0.42071236618861724, 'parking': 0.38439364863572645}
+  area: {'price': 0.5359973457780797, 'area': 1.0, 'bedrooms': 0.1518584855745371, 'bathrooms': 0.1938195310520531, 'stories': 0.08399605092891993, 'parking': 0.35298048121168235}
+  bedrooms: {'price': 0.36649402577386964, 'area': 0.1518584855745371, 'bedrooms': 1.0, 'bathrooms': 0.37393023597215413, 'stories': 0.4085642375381521, 'parking': 0.139269896865613}
+  bathrooms: {'price': 0.517545339455012, 'area': 0.1938195310520531, 'bedrooms': 0.37393023597215413, 'bathrooms': 1.0, 'stories': 0.32616470613294235, 'parking': 0.17749582102283437}
+  stories: {'price': 0.42071236618861724, 'area': 0.08399605092891993, 'bedrooms': 0.4085642375381521, 'bathrooms': 0.32616470613294235, 'stories': 1.0, 'parking': 0.045547091916846645}
+  parking: {'price': 0.38439364863572645, 'area': 0.35298048121168235, 'bedrooms': 0.139269896865613, 'bathrooms': 0.17749582102283437, 'stories': 0.045547091916846645, 'parking': 1.0}
+
+CardinalityAnalysis:
+--------------------------------------------------
+Cardinality:
+  mainroad: {'unique_count': 2, 'unique_values_sample': ['yes', 'no'], 'high_cardinality': False}
+  guestroom: {'unique_count': 2, 'unique_values_sample': ['no', 'yes'], 'high_cardinality': False}
+  basement: {'unique_count': 2, 'unique_values_sample': ['no', 'yes'], 'high_cardinality': False}
+  hotwaterheating: {'unique_count': 2, 'unique_values_sample': ['no', 'yes'], 'high_cardinality': False}
+  airconditioning: {'unique_count': 2, 'unique_values_sample': ['yes', 'no'], 'high_cardinality': False}
+  prefarea: {'unique_count': 2, 'unique_values_sample': ['yes', 'no'], 'high_cardinality': False}
+  furnishingstatus: {'unique_count': 3, 'unique_values_sample': ['furnished', 'semi-furnished', 'unfurnished'], 'high_cardinality': False}
+
+DataDistribution:
+--------------------------------------------------
+Distributions:
+  price: {'skewness': 1.2088998457878217, 'kurtosis': 1.9312045083457265, 'is_normal': np.False_}
+  area: {'skewness': 1.3175492613408553, 'kurtosis': 2.715312998249229, 'is_normal': np.False_}
+  bedrooms: {'skewness': 0.4943186286589377, 'kurtosis': 0.7106691450351841, 'is_normal': np.False_}
+  bathrooms: {'skewness': 1.5848861097619922, 'kurtosis': 2.134057336908815, 'is_normal': np.False_}
+  stories: {'skewness': 1.0791077858970946, 'kurtosis': 0.6621980006219945, 'is_normal': np.False_}
+  parking: {'skewness': 0.8397429574715471, 'kurtosis': -0.5788075674955611, 'is_normal': np.False_}
+
