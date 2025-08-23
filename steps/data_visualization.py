@@ -37,13 +37,13 @@ class MissingValuesVisualization(DataVisualization):
             plt.ylabel('Number of Missing Values')
             plt.xticks(rotation=45, ha='right')
             plt.tight_layout()
-            plt.savefig('missing_values.png')
+            plt.savefig('./plots/missing_values.png')
             plt.close()
             logger.info("Missing values plot saved as 'missing_values.png'")
         except Exception as e:
             logger.error(f"Error in MissingValuesVisualization: {str(e)}")
 
-class DistributionVisualization(DataVisualization):
+class NumericalDistributionVisualization(DataVisualization):
     def visualize(self, df: pd.DataFrame, inspection_results: dict = None) -> None:
         try:
             if df.empty:
@@ -51,7 +51,7 @@ class DistributionVisualization(DataVisualization):
                 return
             
             logger.info("Visualizing data distributions")
-            numerical_cols = df.select_dtypes(include=['float64', 'int64']).columns
+            numerical_cols = list(df.select_dtypes(include=['float64', 'int64']).columns)
             if not numerical_cols:
                 logger.warning("No numerical columns to visualize.")
                 return
@@ -63,11 +63,39 @@ class DistributionVisualization(DataVisualization):
                 plt.xlabel(col)
                 plt.ylabel('Count')
                 plt.tight_layout()
-                plt.savefig(f'distribution_{col}.png')
+                plt.savefig(f'./plots/distribution_{col}.png')
                 plt.close()
                 logger.info(f"Distribution plot for {col} saved as 'distribution_{col}.png'")
         except Exception as e:
             logger.error(f"Error in DistributionVisualization: {str(e)}")
+            
+class CategoricalDistributionVisualization(DataVisualization):
+    def visualize(self, df: pd.DataFrame, inspection_results: dict = None) -> None:
+        try:
+            if df.empty:
+                logger.warning("DataFrame is empty.")
+                return
+
+            logger.info("Visualizing categorical distributions")
+            categorical_cols = list(df.select_dtypes(include=['object', 'category']).columns)
+            if not categorical_cols:
+                logger.warning("No categorical columns to visualize.")
+                return
+
+            for col in categorical_cols:
+                plt.figure(figsize=(8, 6))
+                sns.countplot(data=df, x=col, palette='viridis')
+                plt.title(f'Distribution of {col}')
+                plt.xlabel(col)
+                plt.ylabel('Count')
+                plt.xticks(rotation=45, ha='right')
+                plt.tight_layout()
+                plt.savefig(f'./plots/categorical_distribution_{col}.png')
+                plt.close()
+                logger.info(f"Categorical distribution plot for {col} saved as 'categorical_distribution_{col}.png'")
+        except Exception as e:
+            logger.error(f"Error in CategoricalDistributionVisualization: {str(e)}")
+
 
 class CorrelationHeatmapVisualization(DataVisualization):
     def visualize(self, df: pd.DataFrame, inspection_results: dict = None) -> None:
@@ -92,7 +120,7 @@ class CorrelationHeatmapVisualization(DataVisualization):
             sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1, center=0)
             plt.title('Correlation Matrix')
             plt.tight_layout()
-            plt.savefig('correlation_heatmap.png')
+            plt.savefig('./plots/correlation_heatmap.png')
             plt.close()
             logger.info("Correlation heatmap saved as 'correlation_heatmap.png'")
         except Exception as e:
@@ -102,7 +130,8 @@ class DataVisualizer:
     def __init__(self, strategies: list[DataVisualization] = None):
         self.strategies = strategies or [
             MissingValuesVisualization(),
-            DistributionVisualization(),
+            NumericalDistributionVisualization(),
+            CategoricalDistributionVisualization(),
             CorrelationHeatmapVisualization()
         ]
 

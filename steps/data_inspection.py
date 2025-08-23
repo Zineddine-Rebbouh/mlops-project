@@ -124,49 +124,6 @@ class DuplicateDetection(DataInspection):
             logger.error(f"Error in DuplicateDetection: {str(e)}")
             return {"error": str(e)}
 
-class CorrelationAnalysis(DataInspection):
-    def inspect(self, df: pd.DataFrame) -> dict:
-        """Analyze correlations between numerical features."""
-        try:
-            if df.empty:
-                logger.warning("DataFrame is empty.")
-                return {"correlations": {}, "error": "Empty DataFrame"}
-            
-            logger.info("Performing correlation analysis")
-            numerical_cols = df.select_dtypes(include=['float64', 'int64']).columns
-            if len(numerical_cols) < 2:
-                return {"correlations": {}, "warning": "Less than 2 numerical columns for correlation"}
-            
-            corr_matrix = df[numerical_cols].corr(method='pearson').to_dict()
-            return {"correlations": corr_matrix}
-        except Exception as e:
-            logger.error(f"Error in CorrelationAnalysis: {str(e)}")
-            return {"error": str(e)}
-
-class CardinalityAnalysis(DataInspection):
-    def inspect(self, df: pd.DataFrame) -> dict:
-        """Analyze cardinality of categorical columns."""
-        try:
-            if df.empty:
-                logger.warning("DataFrame is empty.")
-                return {"cardinality": {}, "error": "Empty DataFrame"}
-            
-            logger.info("Analyzing cardinality of categorical columns")
-            categorical_cols = df.select_dtypes(include=['object', 'category']).columns
-            result = {}
-            for col in categorical_cols:
-                unique_count = df[col].nunique()
-                unique_values = df[col].unique().tolist()[:10]  # Limit to first 10 for brevity
-                result[col] = {
-                    "unique_count": unique_count,
-                    "unique_values_sample": unique_values,
-                    "high_cardinality": unique_count > 0.05 * len(df)  # Threshold: 5% of rows
-                }
-            return {"cardinality": result}
-        except Exception as e:
-            logger.error(f"Error in CardinalityAnalysis: {str(e)}")
-            return {"error": str(e)}
-
 class DataDistribution(DataInspection):
     def inspect(self, df: pd.DataFrame) -> dict:
         """Analyze statistical properties of numerical columns."""
@@ -202,8 +159,6 @@ class DataInspector:
             MissingValues(),
             OutlierDetection(),
             DuplicateDetection(),
-            CorrelationAnalysis(),
-            CardinalityAnalysis(),
             DataDistribution()
         ]
         self.results = {}
