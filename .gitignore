@@ -2,3 +2,15 @@ venv/
 *.png
 *.csv
 *.pyc
+
+# add more files here if needed
+__pycache__/
+.ipynb_checkpoints/
+.env
+*.log
+.DS_Store
+.vscode/
+mlruns/
+data/
+models/
+outputs/
