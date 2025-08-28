@@ -10,14 +10,25 @@ on:
 
 jobs:
   train-model:
-    runs-on: windows-latest
-    defaults:
-      run:
-        working-directory: . # ensure root
+    runs-on: ubuntu-latest # better for Postgres & MLflow compatibility
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: house_price_predictor
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # ✅ correct action
+        uses: actions/checkout@v4
 
       - name: Setup python
         uses: actions/setup-python@v4
@@ -29,7 +40,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Start MLflow Tracking Server
+        run: |
+          pip install mlflow psycopg2-binary
+          nohup mlflow server \
+            --backend-store-uri postgresql://postgres:postgres@localhost:5432/house_price_predictor \
+            --default-artifact-root ./mlruns \
+            --host 127.0.0.1 --port 5000 > mlflow.log 2>&1 &
+
       - name: Run training model
+        env:
+          MLFLOW_TRACKING_URI: http://127.0.0.1:5000
         run: python CI/ci_training_model.py
 
       - name: Save the trained model
