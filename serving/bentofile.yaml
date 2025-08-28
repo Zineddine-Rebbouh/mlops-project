@@ -1,0 +1,16 @@
+service: "app:ModelService"
+labels:
+  owner: edwin
+  stage: dev
+include:
+  - "*.py"
+python:
+  packages:
+    - scikit-learn
+    - pandas
+    - numpy
+    - mlflow
+models:
+  - "house_price_model:latest"
+  - tag: "house_price_model:7ak4rkedrc46eme4"
+    alias: "house_alias"
