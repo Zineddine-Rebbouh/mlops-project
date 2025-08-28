@@ -30,7 +30,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run training model
-        run: python CI/training_model.py
+        run: python CI/ci_training_model.py
 
       - name: Save the trained model
         uses: actions/upload-artifact@v4

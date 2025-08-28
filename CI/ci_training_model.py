@@ -4,8 +4,8 @@ from sklearn.linear_model import LinearRegression
 import pandas as pd
 import pickle
 
-sys.path.append(os.path.join(os.getcwd(), "steps"))
-from training_model import TrainingModel
+sys.path.append(os.getcwd())
+from steps.training_model import TrainingModel
 
 class TrainModel():
     def __init__(self):
