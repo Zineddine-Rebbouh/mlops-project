@@ -11,10 +11,13 @@ on:
 jobs:
   train-model:
     runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: . # ensure root
 
     steps:
       - name: Checkout code
-        uses: actions/download-artifact@v4
+        uses: actions/checkout@v4 # ✅ correct action
 
       - name: Setup python
         uses: actions/setup-python@v4
@@ -27,7 +30,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run training model
-        run: python train.py
+        run: python CI/training_model.py
 
       - name: Save the trained model
         uses: actions/upload-artifact@v4
