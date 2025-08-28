@@ -9,7 +9,9 @@ from steps.training_model import TrainingModel
 
 class TrainModel():
     def __init__(self):
-        self.house_model = TrainingModel()
+        df = self.get_current_features()   # build the dataframe here
+        self.house_model = TrainingModel(df, target_column='price')
+        
 
     def get_current_features(self):
         features_path = "/feature_store/data/house_features.parquet"
