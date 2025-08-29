@@ -17,10 +17,21 @@ logging.basicConfig(
 )
 
 def check_data():
-    pass
+    python_script_path = "C:/Users/mkrym/OneDrive/Documents/My Folders/my_main_portfolio/MLops_project/airflow/dags/check_data.py"
+    result = subprocess.run(['python', python_script_path], capture_output=True, text=True)
+    
+    if result.returncode != 0:
+        logging.error(f"Script failed with error: {result.stderr}")
+        return "end"
+    
+    output = result.stdout.strip()
+    logging.info(f"Script output: {output}")
+    return "update_dashboard"
+    
 
 def update_dashboard():
-    pass
+    python_script_path = "C:/Users/mkrym/OneDrive/Documents/My Folders/my_main_portfolio/MLops_project/airflow/dags/update_dashboard.py"
+    result = subprocess.run(['python', python_script_path], capture_output=True, text=True)
 
 with DAG(
     "push_data",
